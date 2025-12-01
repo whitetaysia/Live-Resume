@@ -1,1232 +1,701 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taysia White - Client Success & Digital Health Specialist</title>
-    <style>
-        /* ===== RESET & BASE STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --accent-color: #0C7C8A;
-            --accent-hover: #0a6570;
-            --text-dark: #2d3748;
-            --text-medium: #4a5568;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
-            --bg-white: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        body {
-            font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-white);
-            box-shadow: var(--shadow-sm);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-medium);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-dark);
-        }
-
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-white);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 0;
-                box-shadow: var(--shadow-md);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-            }
-
-            .nav-menu.active {
-                max-height: 400px;
-            }
-
-            .nav-menu li {
-                padding: 0.75rem 0;
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .nav-menu li:last-child {
-                border-bottom: none;
-            }
-        }
-
-        /* ===== LAYOUT ===== */
-        main {
-            margin-top: 70px;
-        }
-
-        .section {
-            padding: 4rem 1.5rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-dark);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
-            text-align: center;
-            padding: 5rem 1.5rem 4rem;
-        }
-
-        .hero-name {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-medium);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .hero-summary {
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            line-height: 1.8;
-        }
-
-        .hero-contact {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        /* ===== SNAPSHOT STATS ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-medium);
-            font-size: 0.95rem;
-        }
-
-        /* ===== TOGGLE ===== */
-        .toggle-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-
-        .toggle-buttons {
-            background: var(--bg-white);
-            border-radius: 8px;
-            padding: 0.5rem;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .toggle-btn {
-            padding: 0.75rem 2rem;
-            border: none;
-            background: transparent;
-            color: var(--text-medium);
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .toggle-btn.active {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .toggle-content {
-            display: none;
-        }
-
-        .toggle-content.active {
-            display: block;
-        }
-
-        /* ===== NEXT OPPORTUNITY ===== */
-        .opportunity-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .opportunity-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .opportunity-desc {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .opportunity-desc h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .opportunity-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .icon-card {
-            background: var(--bg-white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .icon-card h4 {
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .icon-card p {
-            color: var(--text-medium);
-            font-size: 0.95rem;
-        }
-
-        /* ===== EXPERIENCE TIMELINE ===== */
-        .timeline {
-            position: relative;
-        }
-
-        .timeline-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .experience-card {
-            background: var(--bg-white);
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            transition: box-shadow 0.3s;
-        }
-
-        .experience-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .experience-header {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            gap: 1rem;
-        }
-
-        .experience-info h3 {
-            color: var(--text-dark);
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .experience-company {
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .experience-meta {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .experience-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: var(--bg-light);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .expand-icon {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-
-        .expand-icon.expanded {
-            transform: rotate(180deg);
-        }
-
-        .experience-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .experience-details.expanded {
-            max-height: 2000px;
-        }
-
-        .experience-content {
-            padding: 0 1.5rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .experience-content p {
-            margin: 1rem 0;
-            color: var(--text-medium);
-            font-style: italic;
-        }
-
-        .experience-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .experience-content li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-medium);
-        }
-
-        .experience-content li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* ===== SKILLS SECTION ===== */
-        .skills-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .filter-chip {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-white);
-            border: 2px solid var(--border-color);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            color: var(--text-medium);
-        }
-
-        .filter-chip:hover, .filter-chip.active {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            background: rgba(12, 124, 138, 0.05);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-card {
-            background: var(--bg-white);
-            padding: 1rem 1.25rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .skill-card.highlight {
-            border-left-color: var(--accent-color);
-            background: rgba(12, 124, 138, 0.05);
-            font-weight: 600;
-        }
-
-        .skill-card:hover {
-            transform: translateX(4px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* ===== ALIGNMENT SECTION ===== */
-        .alignment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .alignment-card {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            border-top: 4px solid var(--accent-color);
-        }
-
-        .alignment-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .alignment-card p, .alignment-card ul {
-            color: var(--text-medium);
-            line-height: 1.8;
-        }
-
-        .alignment-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .alignment-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .alignment-card li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        /* ===== QUOTE BAND ===== */
-        .quote-band {
-            background: linear-gradient(135deg, #e6f2f5 0%, #f0f4f8 100%);
-            padding: 4rem 1.5rem;
-            text-align: center;
-        }
-
-        .quote-text {
-            max-width: 900px;
-            margin: 0 auto 1rem;
-            font-size: 1.35rem;
-            font-style: italic;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .quote-author {
-            color: var(--text-medium);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact {
-            background: var(--bg-white);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-info {
-            margin: 2rem 0;
-        }
-
-        .contact-item {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-            color: var(--text-medium);
-        }
-
-        .contact-item a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .copy-notification {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--accent-color);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s;
-            pointer-events: none;
-        }
-
-        .copy-notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 2rem 1.5rem;
-        }
-
-        footer p {
-            margin: 0;
-            opacity: 0.8;
-        }
-
-        /* ===== MOBILE RESPONSIVENESS ===== */
-        @media (max-width: 768px) {
-            .hero-name {
-                font-size: 2.25rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
-
-            .hero-summary {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .experience-header {
-                flex-direction: column;
-            }
-
-            .expand-icon {
-                align-self: flex-end;
-            }
-
-            .quote-text {
-                font-size: 1.15rem;
-            }
-        }
-
-        /* ===== SMOOTH SCROLL ===== */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taysia White - Client Success & Digital Health Specialist</title>
+<style>
+/* ===== RESET & BASE STYLES ===== */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--accent-color: #0C7C8A;
+--accent-hover: #0a6570;
+--text-dark: #2d3748;
+--text-medium: #4a5568;
+--text-light: #718096;
+--bg-light: #f7fafc;
+--bg-white: #ffffff;
+--border-color: #e2e8f0;
+--shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+--shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+--shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+}
+body {
+font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
+line-height: 1.6;
+color: var(--text-dark);
+background-color: var(--bg-light);
+}
+/* ===== NAVIGATION ===== */
+.nav-header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+background: var(--bg-white);
+box-shadow: var(--shadow-sm);
+z-index: 1000;
+}
+.nav-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 1rem 1.5rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.nav-logo {
+font-size: 1.25rem;
+font-weight: 700;
+color: var(--accent-color);
+}
+.nav-menu {
+display: flex;
+gap: 2rem;
+list-style: none;
+}
+.nav-menu a {
+text-decoration: none;
+color: var(--text-medium);
+font-weight: 500;
+transition: color 0.3s;
+}
+.nav-menu a:hover {
+color: var(--accent-color);
+}
+.nav-toggle {
+display: none;
+background: none;
+border: none;
+font-size: 1.5rem;
+cursor: pointer;
+color: var(--text-dark);
+}
+@media (max-width: 768px) {
+.nav-toggle {
+display: block;
+}
+.nav-menu {
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background: var(--bg-white);
+flex-direction: column;
+padding: 1rem;
+gap: 0;
+box-shadow: var(--shadow-md);
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+}
+.nav-menu.active {
+max-height: 400px;
+}
+.nav-menu li {
+padding: 0.75rem 0;
+border-bottom: 1px solid var(--border-color);
+}
+.nav-menu li:last-child {
+border-bottom: none;
+}
+}
+/* ===== LAYOUT ===== */
+main {
+margin-top: 70px;
+}
+.section {
+padding: 4rem 1.5rem;
+}
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+.section-title {
+font-size: 2rem;
+font-weight: 700;
+margin-bottom: 2rem;
+text-align: center;
+color: var(--text-dark);
+}
+/* ===== HERO SECTION ===== */
+.hero {
+background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+text-align: center;
+padding: 5rem 1.5rem 4rem;
+}
+.hero-name {
+font-size: 3rem;
+font-weight: 800;
+color: var(--text-dark);
+margin-bottom: 0.5rem;
+}
+.hero-subtitle {
+font-size: 1.5rem;
+color: var(--text-medium);
+margin-bottom: 1.5rem;
+font-weight: 500;
+}
+.hero-summary {
+max-width: 800px;
+margin: 0 auto 1.5rem;
+font-size: 1.1rem;
+color: var(--text-medium);
+line-height: 1.8;
+}
+.hero-contact {
+color: var(--text-light);
+margin-bottom: 2rem;
+font-size: 0.95rem;
+}
+.hero-buttons {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+.btn {
+padding: 0.875rem 2rem;
+border-radius: 6px;
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s;
+border: none;
+cursor: pointer;
+font-size: 1rem;
+}
+.btn-primary {
+background-color: var(--accent-color);
+color: white;
+}
+.btn-primary:hover {
+background-color: var(--accent-hover);
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+.btn-secondary {
+background-color: transparent;
+color: var(--accent-color);
+border: 2px solid var(--accent-color);
+}
+.btn-secondary:hover {
+background-color: var(--accent-color);
+color: white;
+}
+/* ===== SNAPSHOT STATS ===== */
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+margin-bottom: 3rem;
+}
+.stat-card {
+background: var(--bg-white);
+padding: 2rem;
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+text-align: center;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.stat-card:hover {
+transform: translateY(-4px);
+box-shadow: var(--shadow-md);
+}
+.stat-number {
+font-size: 2.5rem;
+font-weight: 700;
+color: var(--accent-color);
+margin-bottom: 0.5rem;
+}
+.stat-label {
+color: var(--text-medium);
+font-size: 0.95rem;
+}
+/* ===== TOGGLE ===== */
+.toggle-container {
+display: flex;
+justify-content: center;
+margin-bottom: 3rem;
+}
+.toggle-buttons {
+background: var(--bg-white);
+border-radius: 8px;
+padding: 0.5rem;
+box-shadow: var(--shadow-sm);
+display: flex;
+gap: 0.5rem;
+}
+.toggle-btn {
+padding: 0.75rem 2rem;
+border: none;
+background: transparent;
+color: var(--text-medium);
+font-weight: 600;
+cursor: pointer;
+border-radius: 6px;
+transition: all 0.3s;
+}
+.toggle-btn.active {
+background-color: var(--accent-color);
+color: white;
+}
+.toggle-content {
+display: none;
+}
+.toggle-content.active {
+display: block;
+}
+/* ===== NEXT OPPORTUNITY ===== */
+.opportunity-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+}
+@media (max-width: 768px) {
+.opportunity-grid {
+grid-template-columns: 1fr;
+}
+}
+.opportunity-desc {
+background: var(--bg-white);
+padding: 2rem;
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+}
+.opportunity-desc h3 {
+color: var(--accent-color);
+margin-bottom: 1rem;
+font-size: 1.25rem;
+}
+.opportunity-cards {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+.icon-card {
+background: var(--bg-white);
+padding: 1.5rem;
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+border-left: 4px solid var(--accent-color);
+}
+.icon-card h4 {
+color: var(--accent-color);
+margin-bottom: 0.5rem;
+font-size: 1.1rem;
+}
+.icon-card p {
+color: var(--text-medium);
+font-size: 0.95rem;
+}
+/* ===== EXPERIENCE TIMELINE ===== */
+.timeline {
+position: relative;
+}
+.timeline-item {
+margin-bottom: 1.5rem;
+}
+.experience-card {
+background: var(--bg-white);
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+overflow: hidden;
+transition: box-shadow 0.3s;
+}
+.experience-card:hover {
+box-shadow: var(--shadow-md);
+}
+.experience-header {
+padding: 1.5rem;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: start;
+gap: 1rem;
+}
+.experience-info h3 {
+color: var(--text-dark);
+font-size: 1.25rem;
+margin-bottom: 0.25rem;
+}
+.experience-company {
+color: var(--accent-color);
+font-weight: 600;
+margin-bottom: 0.25rem;
+}
+.experience-meta {
+color: var(--text-light);
+font-size: 0.9rem;
+margin-bottom: 0.75rem;
+}
+.experience-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.tag {
+background: var(--bg-light);
+color: var(--accent-color);
+padding: 0.25rem 0.75rem;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 500;
+}
+.expand-icon {
+font-size: 1.5rem;
+color: var(--text-light);
+transition: transform 0.3s;
+flex-shrink: 0;
+}
+.expand-icon.expanded {
+transform: rotate(180deg);
+}
+.experience-details {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+}
+.experience-details.expanded {
+max-height: 2000px;
+}
+.experience-content {
+padding: 0 1.5rem 1.5rem;
+border-top: 1px solid var(--border-color);
+}
+.experience-content p {
+margin: 1rem 0;
+color: var(--text-medium);
+font-style: italic;
+}
+.experience-content ul {
+list-style: none;
+padding-left: 0;
+}
+.experience-content li {
+padding: 0.5rem 0;
+padding-left: 1.5rem;
+position: relative;
+color: var(--text-medium);
+}
+.experience-content li:before {
+content: "•";
+position: absolute;
+left: 0;
+color: var(--accent-color);
+font-weight: bold;
+font-size: 1.2rem;
+}
+/* ===== SKILLS SECTION ===== */
+.skills-filters {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 0.75rem;
+margin-bottom: 2rem;
+}
+.filter-chip {
+padding: 0.75rem 1.5rem;
+background: var(--bg-white);
+border: 2px solid var(--border-color);
+border-radius: 25px;
+cursor: pointer;
+transition: all 0.3s;
+font-weight: 500;
+color: var(--text-medium);
+}
+.filter-chip:hover, .filter-chip.active {
+border-color: var(--accent-color);
+color: var(--accent-color);
+background: rgba(12, 124, 138, 0.05);
+}
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 1rem;
+}
+.skill-card {
+background: var(--bg-white);
+padding: 1rem 1.25rem;
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+transition: all 0.3s;
+border-left: 3px solid transparent;
+}
+.skill-card.highlight {
+border-left-color: var(--accent-color);
+background: rgba(12, 124, 138, 0.05);
+font-weight: 600;
+}
+.skill-card:hover {
+transform: translateX(4px);
+box-shadow: var(--shadow-md);
+}
+/* ===== ALIGNMENT SECTION ===== */
+.alignment-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.5rem;
+}
+.alignment-card {
+background: var(--bg-white);
+padding: 2rem;
+border-radius: 8px;
+box-shadow: var(--shadow-sm);
+border-top: 4px solid var(--accent-color);
+}
+.alignment-card h3 {
+color: var(--accent-color);
+margin-bottom: 1rem;
+font-size: 1.25rem;
+}
+.alignment-card p, .alignment-card ul {
+color: var(--text-medium);
+line-height: 1.8;
+}
+.alignment-card ul {
+list-style: none;
+padding-left: 0;
+}
+.alignment-card li {
+padding: 0.5rem 0;
+padding-left: 1.5rem;
+position: relative;
+}
+.alignment-card li:before {
+content: "✓";
+position: absolute;
+left: 0;
+color: var(--accent-color);
+font-weight: bold;
+}
+/* ===== QUOTE BAND ===== */
+.quote-band {
+background: linear-gradient(135deg, #e6f2f5 0%, #f0f4f8 100%);
+padding: 4rem 1.5rem;
+text-align: center;
+}
+.quote-text {
+max-width: 900px;
+margin: 0 auto 1rem;
+font-size: 1.35rem;
+font-style: italic;
+color: var(--text-dark);
+line-height: 1.8;
+}
+.quote-author {
+color: var(--text-medium);
+font-weight: 600;
+font-size: 1.1rem;
+}
+/* ===== CONTACT SECTION ===== */
+.contact {
+background: var(--bg-white);
+}
+.contact-content {
+max-width: 600px;
+margin: 0 auto;
+text-align: center;
+}
+.contact-info {
+margin: 2rem 0;
+}
+.contact-item {
+margin: 1rem 0;
+font-size: 1.1rem;
+color: var(--text-medium);
+}
+.contact-item a {
+color: var(--accent-color);
+text-decoration: none;
+font-weight: 600;
+}
+.contact-item a:hover {
+text-decoration: underline;
+}
+.contact-actions {
+display: flex;
+gap: 1rem;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 2rem;
+}
+.copy-notification {
+position: fixed;
+bottom: 2rem;
+right: 2rem;
+background: var(--accent-color);
+color: white;
+padding: 1rem 1.5rem;
+border-radius: 8px;
+box-shadow: var(--shadow-lg);
+opacity: 0;
+transform: translateY(20px);
+transition: all 0.3s;
+pointer-events: none;
+}
+.copy-notification.show {
+opacity: 1;
+transform: translateY(0);
+}
+/* ===== FOOTER ===== */
+footer {
+background: var(--text-dark);
+color: white;
+text-align: center;
+padding: 2rem 1.5rem;
+}
+footer p {
+margin: 0;
+opacity: 0.8;
+}
+@media (max-width: 768px) {
+.hero-name {
+font-size: 2.25rem;
+}
+.hero-subtitle {
+font-size: 1.25rem;
+}
+.hero-summary {
+font-size: 1rem;
+}
+.section {
+padding: 3rem 1.5rem;
+}
+.section-title {
+font-size: 1.75rem;
+}
+.stats-grid {
+grid-template-columns: 1fr;
+}
+.experience-header {
+flex-direction: column;
+}
+.expand-icon {
+align-self: flex-end;
+}
+.quote-text {
+font-size: 1.15rem;
+}
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="nav-header">
-        <nav class="nav-container">
-            <div class="nav-logo">TW</div>
-            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#alignment">Alignment</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="overview" class="hero">
-            <div class="container">
-                <h1 class="hero-name">Taysia White</h1>
-                <p class="hero-subtitle">Client Success & Digital Health Workflow Specialist</p>
-                <p class="hero-summary">
-                    6+ years in customer and client success across telehealth, healthcare-adjacent services, SaaS, and service-based environments. Experienced in onboarding, workflow configuration, digital health tools, and cross-functional collaboration with Product, Clinical, and Engineering teams. Skilled at translating practice needs into system configurations that improve efficiency, reduce manual work, and enhance patient experience.
-                </p>
-                <p class="hero-contact">Chicago, IL · (630) 877-6562 · whitetaysia24@gmail.com</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Download Resume (PDF)</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Taysia</a>
-                </div>
-            </div>
-        </section>
+<header class="nav-header">
+<nav class="nav-container">
+<div class="nav-logo">TW</div>
+<button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+<ul class="nav-menu">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#alignment">Alignment</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
 
-        <!-- Quick Snapshot -->
-        <section class="section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">years client & customer success experience</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">20%+</div>
-                        <div class="stat-label">workflow improvement and training efficiency gains</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">15–30%</div>
-                        <div class="stat-label">reduction in escalations through proactive process fixes</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">patients supported annually through streamlined onboarding</div>
-                    </div>
-                </div>
+<main>
 
-                <!-- Toggle -->
-                <div class="toggle-container">
-                    <div class="toggle-buttons">
-                        <button class="toggle-btn active" data-view="overview">Overview</button>
-                        <button class="toggle-btn" data-view="nextpatient">For NextPatient</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="overview" class="hero">
+<div class="container">
+<h1 class="hero-name">Taysia White</h1>
+<p class="hero-subtitle">Client Success & Digital Health Workflow Specialist</p>
+<p class="hero-summary">
+6+ years in customer and client success across telehealth, healthcare-adjacent services, SaaS, and service-based environments. Experienced in onboarding, workflow configuration, digital health tools, and cross-functional collaboration with Product, Clinical, and Engineering teams.
+</p>
+<p class="hero-contact">Chicago, IL · (630) 877-6562 · whitetaysia24@gmail.com</p>
 
-        <!-- Next Opportunity -->
-        <section class="section" style="background: var(--bg-white);">
-            <div class="container">
-                <h2 class="section-title">Next Opportunity</h2>
-                
-                <!-- Overview View -->
-                <div class="toggle-content active" data-content="overview">
-                    <div class="opportunity-grid">
-                        <div class="opportunity-desc">
-                            <h3>Role Focus</h3>
-                            <p>Client Success Associate, Client Success Specialist, or Onboarding Specialist roles focused on guiding medical practices or service-based teams through onboarding, system configuration, digital workflow setup, and product adoption.</p>
-                        </div>
-                        <div class="opportunity-cards">
-                            <div class="icon-card">
-                                <h4>Focus Areas</h4>
-                                <p>Onboarding, workflow setup, multi-account support, digital adoption, customer education</p>
-                            </div>
-                            <div class="icon-card">
-                                <h4>Industries</h4>
-                                <p>Healthcare, digital health, SaaS, service-based operations</p>
-                            </div>
-                            <div class="icon-card">
-                                <h4>Ideal Environment</h4>
-                                <p>Collaborative, product-driven teams with clear communication, data-informed decisions, and process-oriented culture</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="hero-buttons">
+<!-- REMOVED PDF BUTTON -->
+<a href="#contact" class="btn btn-secondary">Contact Taysia</a>
+</div>
+</div>
+</section>
 
-                <!-- NextPatient View -->
-                <div class="toggle-content" data-content="nextpatient">
-                    <div class="opportunity-grid">
-                        <div class="opportunity-desc">
-                            <h3>Role Focus</h3>
-                            <p>Supporting practices on the NextPatient platform through comprehensive onboarding, system configuration, digital workflow setup, and ongoing product adoption. Helping medical teams optimize their use of NextPatient to improve practice efficiency and patient experience.</p>
-                        </div>
-                        <div class="opportunity-cards">
-                            <div class="icon-card">
-                                <h4>Focus Areas</h4>
-                                <p>NextPatient platform onboarding, practice workflow configuration, multi-account support, digital adoption strategies, customer education</p>
-                            </div>
-                            <div class="icon-card">
-                                <h4>Industries</h4>
-                                <p>Healthcare technology, digital health platforms, medical practice management SaaS</p>
-                            </div>
-                            <div class="icon-card">
-                                <h4>Ideal Environment</h4>
-                                <p>NextPatient's collaborative, product-driven team with clear communication, data-informed decisions, and commitment to improving patient care</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- REST OF THE BODY CONTENT STAYS THE SAME UNTIL CONTACT SECTION -->
 
-        <!-- Experience -->
-        <section id="experience" class="section">
-            <div class="container">
-                <h2 class="section-title">Experience</h2>
-                <div class="timeline">
-                    <!-- Rugiet Health -->
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header" role="button" aria-expanded="false">
-                                <div class="experience-info">
-                                    <div class="experience-company">Rugiet Health</div>
-                                    <h3>Client Success & Executive Coordinator / Project Specialist</h3>
-                                    <div class="experience-meta">May 2025 – Present · Remote</div>
-                                    <div class="experience-tags">
-                                        <span class="tag">Digital Health</span>
-                                        <span class="tag">Telehealth</span>
-                                        <span class="tag">Onboarding</span>
-                                        <span class="tag">Workflow Configuration</span>
-                                    </div>
-                                </div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="experience-details">
-                                <div class="experience-content">
-                                    <p>Telehealth company providing clinical and digital services for patient care and provider workflows.</p>
-                                    <ul>
-                                        <li>Primary point of contact for clinical, operational, and patient-facing stakeholders throughout onboarding and ongoing adoption</li>
-                                        <li>Configure digital health workflows (user accounts, automations, practice processes, reporting dashboards) to optimize provider efficiency and patient engagement</li>
-                                        <li>Conduct discovery sessions with medical teams, map digital workflows that support compliance, clinical operations, and patient experience</li>
-                                        <li>Develop SOPs, training materials, and user guides to unify workflows across Product, Clinical, and Operations teams</li>
-                                        <li>Collaborate with Product, Engineering, Clinical, and IT to troubleshoot, escalate bugs, and advocate for improvements</li>
-                                        <li>Supervise and coach 3+ specialists, standardizing onboarding and documentation and enforcing PHI protection protocols</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<section id="contact" class="section contact">
+<div class="container">
+<div class="contact-content">
+<h2 class="section-title">Let's Connect</h2>
 
-                    <!-- Brow's by Tay -->
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header" role="button" aria-expanded="false">
-                                <div class="experience-info">
-                                    <div class="experience-company">Brow's by Tay</div>
-                                    <h3>Founder & Patient Experience Specialist</h3>
-                                    <div class="experience-meta">May 2022 – Present · Part-Time, Oswego, IL</div>
-                                    <div class="experience-tags">
-                                        <span class="tag">Health & Aesthetics</span>
-                                        <span class="tag">Patient Experience</span>
-                                        <span class="tag">CRM</span>
-                                    </div>
-                                </div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="experience-details">
-                                <div class="experience-content">
-                                    <p>End-to-end client onboarding, consent documentation, scheduling, and post-procedure care for 200+ patients annually.</p>
-                                    <ul>
-                                        <li>Configure CRM and automated follow-up workflows (Asana, Trello, Monday.com) improving retention by 25% and satisfaction by 30%</li>
-                                        <li>Oversee contractors and trainees with standardized onboarding and operations</li>
-                                        <li>Ensure compliance with health, safety, and documentation requirements</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="contact-info">
+<div class="contact-item"><strong>Taysia White</strong></div>
+<div class="contact-item">Chicago, IL</div>
+<div class="contact-item">
+<a href="mailto:whitetaysia24@gmail.com">whitetaysia24@gmail.com</a>
+</div>
+<div class="contact-item">(630) 877-6562</div>
+</div>
 
-                    <!-- HelloFresh / Factor_ -->
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header" role="button" aria-expanded="false">
-                                <div class="experience-info">
-                                    <div class="experience-company">HelloFresh / Factor_</div>
-                                    <h3>Customer Success Specialist</h3>
-                                    <div class="experience-meta">February 2021 – May 2025 · Remote</div>
-                                    <div class="experience-tags">
-                                        <span class="tag">Healthcare-Adjacent Wellness</span>
-                                        <span class="tag">SaaS</span>
-                                        <span class="tag">Data Analytics</span>
-                                    </div>
-                                </div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="experience-details">
-                                <div class="experience-content">
-                                    <p>Support onboarding and optimization for 50+ accounts using nutrition/meal services that influence patient dietary programs and wellness outcomes.</p>
-                                    <ul>
-                                        <li>Guide platform adoption, account setup, and workflow configuration for dietitians and wellness teams</li>
-                                        <li>Build dashboards and reports (Salesforce, Tableau, Excel) to monitor usage trends and client needs</li>
-                                        <li>Author SOPs, onboarding guides, and templates; partner with Product/Engineering/Operations to reduce escalations by 15–30%</li>
-                                        <li>Mentor new hires on communication, problem-solving, and workflow management</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="contact-actions">
+<button class="btn btn-primary" id="copyEmailBtn">Copy Email</button>
 
-                    <!-- Meijer -->
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header" role="button" aria-expanded="false">
-                                <div class="experience-info">
-                                    <div class="experience-company">Meijer</div>
-                                    <h3>Customer Success Intern</h3>
-                                    <div class="experience-meta">May 2019 – August 2020 · Grand Rapids, MI & St. Charles, IL</div>
-                                    <div class="experience-tags">
-                                        <span class="tag">Retail Operations</span>
-                                        <span class="tag">Process Optimization</span>
-                                        <span class="tag">Training</span>
-                                    </div>
-                                </div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="experience-details">
-                                <div class="experience-content">
-                                    <p>Two summer internships focused on retail operations and merchandising.</p>
-                                    <ul>
-                                        <li>Support onboarding and training for new staff in retail operations and merchandising</li>
-                                        <li>Create process guides and job aids; analyze workflow data to reduce errors and improve accuracy</li>
-                                        <li>Assist with internal audits and inventory checks; coordinate across operations, merchandising, and store leadership</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- REMOVED PDF BUTTON -->
 
-        <!-- Skills & Tools -->
-        <section id="skills" class="section" style="background: var(--bg-white);">
-            <div class="container">
-                <h2 class="section-title">Skills & Tools</h2>
-                
-                <div class="skills-filters">
-                    <button class="filter-chip active" data-category="all">All Skills</button>
-                    <button class="filter-chip" data-category="success">Customer Success & Engagement</button>
-                    <button class="filter-chip" data-category="onboarding">Onboarding & Workflow</button>
-                    <button class="filter-chip" data-category="data">Data & Analytics</button>
-                    <button class="filter-chip" data-category="tools">Tools & Platforms</button>
-                </div>
+<!-- UPDATED LINKEDIN BUTTON -->
+<a href="https://www.linkedin.com/in/taysia-white-442b32152"
+target="_blank"
+class="btn btn-secondary">
+LinkedIn
+</a>
 
-                <div class="skills-grid">
-                    <div class="skill-card" data-categories="success">Customer Success</div>
-                    <div class="skill-card" data-categories="success">Customer Service & Support</div>
-                    <div class="skill-card" data-categories="success">Relationship Management</div>
-                    <div class="skill-card" data-categories="success">User Support and Engagement</div>
-                    <div class="skill-card" data-categories="success onboarding">Training & Development</div>
-                    <div class="skill-card" data-categories="success">Cross-Functional Collaboration</div>
-                    <div class="skill-card" data-categories="success">Communication</div>
-                    <div class="skill-card" data-categories="success">Problem-Solving</div>
-                    <div class="skill-card" data-categories="success">Adaptability</div>
-                    <div class="skill-card" data-categories="success">Technical Support Liaison</div>
-                    <div class="skill-card" data-categories="success">Voice of Customer Initiatives</div>
-                    
-                    <div class="skill-card" data-categories="onboarding">Client Onboarding</div>
-                    <div class="skill-card" data-categories="onboarding">Workflow Configuration</div>
-                    <div class="skill-card" data-categories="onboarding">Digital Workflow Setup</div>
-                    <div class="skill-card" data-categories="onboarding">Multi-Account Support</div>
-                    <div class="skill-card" data-categories="onboarding">Process Improvement</div>
-                    <div class="skill-card" data-categories="onboarding">SOP Development</div>
-                    <div class="skill-card" data-categories="onboarding">Agile Methodologies</div>
-                    <div class="skill-card" data-categories="onboarding">Compliance (GDPR, CCPA)</div>
-                    
-                    <div class="skill-card" data-categories="data">Data Analysis</div>
-                    <div class="skill-card" data-categories="data tools">Excel</div>
-                    <div class="skill-card" data-categories="data tools">Tableau</div>
-                    <div class="skill-card" data-categories="data tools">Power BI</div>
-                    <div class="skill-card" data-categories="data">Dashboard Creation</div>
-                    <div class="skill-card" data-categories="data">Reporting</div>
-                    
-                    <div class="skill-card" data-categories="tools">Salesforce</div>
-                    <div class="skill-card" data-categories="tools">HubSpot</div>
-                    <div class="skill-card" data-categories="tools">Mailchimp</div>
-                    <div class="skill-card" data-categories="tools">Zendesk</div>
-                    <div class="skill-card" data-categories="tools">Genesys</div>
-                    <div class="skill-card" data-categories="tools">Medallia</div>
-                    <div class="skill-card" data-categories="tools">JIRA</div>
-                    <div class="skill-card" data-categories="tools">Asana</div>
-                    <div class="skill-card" data-categories="tools">Trello</div>
-                    <div class="skill-card" data-categories="tools">Monday.com</div>
-                    <div class="skill-card" data-categories="tools">Google Workspace</div>
-                    <div class="skill-card" data-categories="tools">Microsoft Office</div>
-                    <div class="skill-card" data-categories="tools">Zoom</div>
-                    <div class="skill-card" data-categories="tools">APIs</div>
-                </div>
-            </div>
-        </section>
+</div>
+</div>
+</div>
+</section>
 
-        <!-- Alignment -->
-        <section id="alignment" class="section">
-            <div class="container">
-                <h2 class="section-title">Alignment & Value</h2>
-                
-                <!-- Overview View -->
-                <div class="toggle-content active" data-content="overview">
-                    <div class="alignment-grid">
-                        <div class="alignment-card">
-                            <h3>How I Work With Teams</h3>
-                            <p>I collaborate closely with Product, Clinical, Engineering, and Operations teams to turn user feedback into platform improvements. Clear communication and structured processes ensure everyone stays aligned on customer needs and product evolution.</p>
-                        </div>
-                        <div class="alignment-card">
-                            <h3>Customer & Patient Impact</h3>
-                            <p>I focus on improving workflows, reducing manual work, and increasing satisfaction and retention. By understanding practice needs and configuring systems thoughtfully, I help teams deliver better experiences for their patients and users.</p>
-                        </div>
-                        <div class="alignment-card">
-                            <h3>What You Can Expect</h3>
-                            <p>Proactive issue spotting, structured documentation (SOPs, guides), and a calm, empathetic presence with clients and internal partners. I bring reliability, attention to detail, and a commitment to continuous improvement.</p>
-                        </div>
-                    </div>
-                </div>
+</main>
 
-                <!-- NextPatient View -->
-                <div class="toggle-content" data-content="nextpatient">
-                    <div style="max-width: 900px; margin: 0 auto;">
-                        <div class="alignment-card" style="margin-bottom: 2rem;">
-                            <h3>Aligned With NextPatient</h3>
-                            <p>Customer Success professional with 6+ years experience across onboarding, workflow setup, platform adoption, and day-to-day support in healthcare and SaaS environments.</p>
-                            <ul style="margin-top: 1rem;">
-                                <li>End-to-end onboarding for medical and operational teams</li>
-                                <li>Workflow mapping and user training</li>
-                                <li>Multi-account support and relationship management</li>
-                                <li>Process issue resolution and proactive support</li>
-                                <li>Clear documentation and SOP creation</li>
-                                <li>Ability to learn products deeply and advocate for user-driven improvements</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="alignment-card">
-                            <h3>Why NextPatient</h3>
-                            <p>I'm excited about NextPatient because its mission directly aligns with the type of work I'm passionate about—helping medical practices streamline their workflows and improve the patient experience through thoughtful, intuitive technology.</p>
-                            <p style="margin-top: 1rem;">I'm motivated by solving problems that genuinely matter to providers and staff, and I appreciate that NextPatient focuses on building a product that reduces friction, replaces outdated systems, and makes everyday tasks easier for practices. The company's intentional, product-first approach and its success without outside funding speaks to the quality, integrity, and craftsmanship behind the platform.</p>
-                            <p style="margin-top: 1rem;">I'm also drawn to the collaborative nature of the role, where deep product expertise, clear communication, and customer advocacy come together to make a meaningful impact. I thrive in small, high-trust teams where every detail matters, and where supporting users through onboarding, workflow configuration, and ongoing success helps shape the product itself. With my background in healthcare-adjacent SaaS onboarding, cross-functional collaboration, and empathetic customer support, I'm confident I can contribute immediately while continuing to grow alongside the team.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<footer>
+<div class="container">
+<p>&copy; <span id="currentYear"></span> Taysia White · Live Resume</p>
+</div>
+</footer>
 
-        <!-- Quote Band -->
-        <section class="quote-band">
-            <div class="container">
-                <p class="quote-text">"Don't ask what the world needs. Ask what makes you come alive, and go do it. Because what the world needs is people who have come alive. Your true work is found at the intersection of your passions and the needs of the world."</p>
-                <p class="quote-author">— Howard Thurman</p>
-            </div>
-        </section>
+<div class="copy-notification" id="copyNotification">
+Email copied to clipboard!
+</div>
 
-        <!-- Contact -->
-        <section id="contact" class="section contact">
-            <div class="container">
-                <div class="contact-content">
-                    <h2 class="section-title">Let's Connect</h2>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <strong>Taysia White</strong>
-                        </div>
-                        <div class="contact-item">
-                            Chicago, IL
-                        </div>
-                        <div class="contact-item">
-                            <a href="mailto:whitetaysia24@gmail.com">whitetaysia24@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            (630) 877-6562
-                        </div>
-                    </div>
+<script>
+// NAV MENU
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
 
-                    <div class="contact-actions">
-                        <button class="btn btn-primary" id="copyEmailBtn">Copy Email</button>
-                        <a href="#" class="btn btn-secondary">Download Resume (PDF)</a>
-                        <a href="#" class="btn btn-secondary">LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+const offset = 70;
+const targetPosition = target.offsetTop - offset;
+window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+}
+});
+});
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Taysia White · Live Resume</p>
-        </div>
-    </footer>
+// Copy email
+const copyEmailBtn = document.getElementById('copyEmailBtn');
+const copyNotification = document.getElementById('copyNotification');
 
-    <!-- Copy Notification -->
-    <div class="copy-notification" id="copyNotification">
-        Email copied to clipboard!
-    </div>
+copyEmailBtn.addEventListener('click', () => {
+const email = 'whitetaysia24@gmail.com';
+navigator.clipboard.writeText(email).then(() => {
+copyNotification.classList.add('show');
+setTimeout(() => copyNotification.classList.remove('show'), 3000);
+});
+});
 
-    <script>
-        // ===== NAVIGATION TOGGLE =====
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+// Footer year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // ===== SMOOTH SCROLLING =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = 70; // Account for fixed nav
-                    const targetPosition = target.offsetTop - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // ===== VIEW TOGGLE (Overview / NextPatient) =====
-        const toggleButtons = document.querySelectorAll('.toggle-btn');
-        const toggleContents = document.querySelectorAll('.toggle-content');
-
-        toggleButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const view = button.dataset.view;
-                
-                // Update button states
-                toggleButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Update content visibility
-                toggleContents.forEach(content => {
-                    if (content.dataset.content === view) {
-                        content.classList.add('active');
-                    } else {
-                        content.classList.remove('active');
-                    }
-                });
-            });
-        });
-
-        // ===== EXPERIENCE ACCORDION =====
-        const experienceHeaders = document.querySelectorAll('.experience-header');
-        
-        experienceHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const details = header.nextElementSibling;
-                const icon = header.querySelector('.expand-icon');
-                const isExpanded = details.classList.contains('expanded');
-                
-                // Toggle expanded state
-                details.classList.toggle('expanded');
-                icon.classList.toggle('expanded');
-                
-                // Update aria-expanded
-                header.setAttribute('aria-expanded', !isExpanded);
-            });
-        });
-
-        // ===== SKILLS FILTER =====
-        const filterChips = document.querySelectorAll('.filter-chip');
-        const skillCards = document.querySelectorAll('.skill-card');
-
-        filterChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const category = chip.dataset.category;
-                
-                // Update active chip
-                filterChips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                
-                // Highlight matching skills
-                skillCards.forEach(card => {
-                    if (category === 'all') {
-                        card.classList.remove('highlight');
-                    } else {
-                        const categories = card.dataset.categories.split(' ');
-                        if (categories.includes(category)) {
-                            card.classList.add('highlight');
-                        } else {
-                            card.classList.remove('highlight');
-                        }
-                    }
-                });
-            });
-        });
-
-        // ===== COPY EMAIL TO CLIPBOARD =====
-        const copyEmailBtn = document.getElementById('copyEmailBtn');
-        const copyNotification = document.getElementById('copyNotification');
-
-        copyEmailBtn.addEventListener('click', () => {
-            const email = 'whitetaysia24@gmail.com';
-            
-            // Copy to clipboard
-            navigator.clipboard.writeText(email).then(() => {
-                // Show notification
-                copyNotification.classList.add('show');
-                
-                // Hide notification after 3 seconds
-                setTimeout(() => {
-                    copyNotification.classList.remove('show');
-                }, 3000);
-            }).catch(err => {
-                console.error('Failed to copy email:', err);
-            });
-        });
-
-        // ===== SET CURRENT YEAR IN FOOTER =====
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>
